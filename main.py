@@ -1,7 +1,8 @@
 import sys
 import os
-from PySide6.QtWidgets import (QApplication, QMainWindow, QFileDialog, 
-                               QLabel, QVBoxLayout, QDialog, QMessageBox)
+from PySide6.QtWidgets import (
+    QApplication, QMainWindow, QFileDialog, 
+    QLabel, QVBoxLayout, QDialog, QMessageBox)
 from PySide6.QtCore import QTimer, QSettings
 from PySide6.QtGui import QIcon
 from appWindow import Ui_AppMainWindow
