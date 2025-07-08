@@ -56,7 +56,7 @@ PySide6
 Installation Steps
 Clone the repository:
 
-git clonechttps://github.com/inr26/PyUIRender.git
+git clone https://github.com/inr26/PyUIRender.git
 
 
 Install required dependencies:
