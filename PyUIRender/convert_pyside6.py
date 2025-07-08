@@ -12,13 +12,6 @@ def convert_ui_to_py(input_path, output_dir=None):
         input_path (str): Path to the input .ui file
         output_dir (str): Directory to save the output .py file (optional)
     
-    Returns:
-        str: Path to the generated .py file
-    
-    Raises:
-        FileNotFoundError: If input file doesn't exist or pyside6-uic is not found
-        ValueError: If input file doesn't have .ui extension
-        RuntimeError: If conversion fails
     """
     # Validate input file
     if not os.path.exists(input_path):

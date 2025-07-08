@@ -24,7 +24,7 @@ def get_version():
         version = re.sub(r'-dirty$', '.dirty', version)  # Format dirty flag
         return version
     except (subprocess.CalledProcessError, FileNotFoundError):
-        return "1.0.0.dev"  # Fallback version
+        return "1.0.0.dev"  
 
 if __name__ == "__main__":
     print(get_version())

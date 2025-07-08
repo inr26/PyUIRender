@@ -1,7 +1,7 @@
 import sys
 import os
 from PySide6.QtWidgets import (
-    QFileDialog, QApplication, QMainWindow, QFileDialog, 
+    QFileDialog, QApplication, QMainWindow, 
     QLabel, QVBoxLayout, QDialog, QMessageBox)
 from PySide6.QtCore import QTimer, QSettings
 from PySide6.QtGui import QIcon
@@ -18,7 +18,7 @@ class SuccessDialog(QDialog):
         self.ui.setupUi(self)
         
         # Set output directory in the text field
-        self.ui.saved_file_path.setPlainText(output_dir)
+        self.ui.saved_file_path.setPlainText(str(output_dir))  # Convert to string
         
         # Connect copy button
         self.ui.copy_path_btn.clicked.connect(self.copy_path)
@@ -84,7 +84,7 @@ class MainWindow(QMainWindow):
         self.selected_files = []
         
         # Set initial output path from settings
-        self.ui.file_path.setText(last_output_dir)
+        self.ui.file_path.setText(str(last_output_dir))
         
         # Conversion status tracking
         self.conversion_in_progress = False
@@ -107,7 +107,7 @@ class MainWindow(QMainWindow):
     def browse_ui_files(self):
         """Open file dialog to select multiple .ui files"""
         file_dialog = QFileDialog(self)
-        file_dialog.setFileMode(QFileDialog.ExistingFiles)
+        file_dialog.setFileMode(QFileDialog.FileMode.ExistingFiles)  # Use full enum path
         file_dialog.setNameFilter("UI Files (*.ui)")
         file_dialog.setWindowTitle("Select UI Files")
         
@@ -155,8 +155,8 @@ class MainWindow(QMainWindow):
     def select_output_directory(self):
         """Open dialog to select output directory"""
         folder_dialog = QFileDialog(self)
-        folder_dialog.setFileMode(QFileDialog.Directory)
-        folder_dialog.setOption(QFileDialog.ShowDirsOnly, True)
+        folder_dialog.setFileMode(QFileDialog.FileMode.Directory)  # Use full enum path
+        folder_dialog.setOption(QFileDialog.Option.ShowDirsOnly, True)  # Use full enum path
         folder_dialog.setWindowTitle("Select Output Directory")
         
         if folder_dialog.exec():
@@ -188,7 +188,7 @@ class MainWindow(QMainWindow):
                 self,
                 "Missing Information",
                 "\n\n".join(errors),
-                QMessageBox.Ok
+                QMessageBox.StandardButton.Ok  # Use full enum path
             )
             return False
             
@@ -226,6 +226,7 @@ class MainWindow(QMainWindow):
             
         input_path = self.selected_files[self.current_file_index]
         filename = os.path.basename(input_path)
+        output_path = None  # Initialize to avoid unbound warning
         
         try:
             if method == "PyQt5":
@@ -240,9 +241,10 @@ class MainWindow(QMainWindow):
                 from convert_pyside6 import convert_ui_to_py
                 output_path = convert_ui_to_py(input_path, output_dir)
                 
-            # Add to successful files
-            self.successful_files.append(output_path)
-            print(f"Converted: {filename} -> {os.path.basename(output_path)}")
+            # Add to successful files only if conversion succeeded
+            if output_path:
+                self.successful_files.append(output_path)
+                print(f"Converted: {filename} -> {os.path.basename(output_path)}")
             
         except Exception as e:
             error_msg = f"Error converting {filename}:\n{str(e)}"
