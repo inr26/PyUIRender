@@ -21,24 +21,29 @@ Modules:
     resources_rc: Compiled resource file for application assets
 """
 
-import os
-import subprocess
-import sys
-
 # Package metadata
-__author__ = "Your Name"
-__email__ = "your.email@example.com"
+__author__ = "istiak Noor Rabbi"
+__email__ = "istiaknoor@gmail.com.com"
 __description__ = "A tool for converting Qt .ui files to Python code"
 __license__ = "MIT"
-
-# Import version
-from .version import __version__
 
 # Import key components for easier access
 from .appWindow import Ui_AppMainWindow
 from .success_dia import Ui_success_dialog
 from .failed_dia import Ui_fail_dialog
 from .resources_rc import *
+
+# Dynamic version import
+try:
+    from importlib.metadata import version, PackageNotFoundError
+    __version__ = version("PyUIRender")
+except (PackageNotFoundError, ImportError):
+    # Fallback for development mode
+    try:
+        from setuptools_scm import get_version
+        __version__ = get_version(root='..', relative_to=__file__)
+    except (ImportError, LookupError):
+        __version__ = "0.0.0.dev"
 
 # Package initialization message
 print(f"Initializing PyUIRender v{__version__}")
