@@ -1,6 +1,7 @@
 import os
 import sys
 from PyQt6 import uic
+from PyQt6.uic.compile_ui import compileUi
 
 def convert_ui_to_py(input_path, output_dir=None):
     """
