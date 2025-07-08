@@ -7,7 +7,9 @@ PyUIRender - Qt UI to Python Converter
 
 PyUIRender is a user-friendly graphical tool that converts Qt Designer .ui files into Python code for multiple frameworks. With its intuitive interface, you can batch-convert UI files to PyQt5, PyQt6, or PySide6 formats with just a few clicks.
 
-🚀 Why PyUIRender?
+
+
+**🚀 Why PyUIRender?**
 
 PyUIRender is a powerful, user-friendly desktop application tailored for developers and designers who need to:
 
@@ -24,7 +26,8 @@ PyUIRender is a powerful, user-friendly desktop application tailored for develop
 
 Whether you’re building internal tools, shipping client-facing GUIs, or automating your build pipeline, PyUIRender saves time and enforces consistency.
 
-⭐ Key Features
+
+**⭐ Key Features**
 
 🖼️ Multi-Format Conversion: Convert UI files to PyQt5, PyQt6, or PySide6 code
 
@@ -41,7 +44,7 @@ Whether you’re building internal tools, shipping client-facing GUIs, or automa
 ✅ Error Handling: Clear error messages and success notifications
 
 
-🎯 Installation
+**🎯 Installation**
 
 Prerequisites
 
@@ -56,6 +59,7 @@ Clone the repository.
 
 Install required dependencies:
 
+# For PySide6 conversions
 bash
 pip install PySide6
 For additional framework support (optional):
@@ -73,7 +77,7 @@ bash
 python main.py
 
 
-Using the interface:
+**Using the interface:**
 
 Click "Browse .ui Files" to select UI files for conversion
 
@@ -92,7 +96,7 @@ Error dialog provides details for any failed conversions
 Progress bar tracks conversion status
 
 
-Screenshots
+**Screenshots**
 
 Main Window	
 ![Screenshot 2025-07-08 222653](https://github.com/user-attachments/assets/37a95164-c079-44b9-95c5-276d9a70819d)
@@ -104,7 +108,7 @@ Error Dialog
 ![image](https://github.com/user-attachments/assets/38e0ecee-9c96-49ec-81b8-aa080c3983a5)
 
 
-File Structure
+**File Structure**
 
 ![image](https://github.com/user-attachments/assets/65b126a4-2f70-441b-b192-f136a628144f)
 
