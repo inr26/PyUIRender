@@ -1,9 +1,9 @@
 import sys
 import os
 from PySide6.QtWidgets import (
-    QFileDialog, QApplication, QMainWindow, 
+    QFileDialog, QApplication, QMainWindow,
     QLabel, QVBoxLayout, QDialog, QMessageBox)
-from PySide6.QtCore import QTimer, QSettings
+from PySide6.QtCore import QTimer, QSettings, Qt, QEvent
 from PySide6.QtGui import QIcon
 from appWindow import Ui_AppMainWindow
 from success_dia import Ui_success_dialog
@@ -54,6 +54,10 @@ class MainWindow(QMainWindow):
         self.ui = Ui_AppMainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle("PyUIRender")
+        
+        # Prevent window resizing and fullscreen
+        self.setWindowFlag(Qt.WindowType.WindowMaximizeButtonHint, False)
+        self.setFixedSize(self.size())
         
         # Set window icon using relative path
         script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -323,6 +327,13 @@ class MainWindow(QMainWindow):
         self.ui.convert_btn.setEnabled(enabled)
         self.ui.method_dropdown.setEnabled(enabled)
         self.ui.file_path.setEnabled(enabled)
+
+    def changeEvent(self, event):
+        """Prevent window from entering full screen mode"""
+        if event.type() == QEvent.Type.WindowStateChange:
+            if self.windowState() & Qt.WindowState.WindowFullScreen:
+                self.showNormal()
+        super().changeEvent(event)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
