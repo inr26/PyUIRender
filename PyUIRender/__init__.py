@@ -31,21 +31,8 @@ __email__ = "your.email@example.com"
 __description__ = "A tool for converting Qt .ui files to Python code"
 __license__ = "MIT"
 
-# Version management
-__version__ = "1.0.0"  # Default version
-
-try:
-    # Try to get version from versioneer-generated file
-    from ._version import get_versions
-    __version__ = get_versions()['version']
-    del get_versions
-except ImportError:
-    # Fallback for development mode
-    try:
-        from setuptools_scm import get_version
-        __version__ = get_version()
-    except ImportError:
-        __version__ = "0.0.0.dev"
+# Import version
+from .version import __version__
 
 # Import key components for easier access
 from .appWindow import Ui_AppMainWindow
