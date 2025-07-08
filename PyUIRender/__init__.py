@@ -46,14 +46,14 @@ except ImportError:
         __version__ = get_version(relative_to=__file__)
     except (ImportError, LookupError):
         # Final fallback
-        __version__ = "0.0.0.dev"
+        __version__ = "1.0.0.dev"
 except Exception:
     # Handle PackageNotFoundError and other exceptions
     try:
         from setuptools_scm import get_version
         __version__ = get_version(relative_to=__file__)
     except (ImportError, LookupError):
-        __version__ = "0.0.0.dev"
+        __version__ = "1.0.0.dev"
 
 # Remove ".dev" from version if it exists
 if __version__.endswith(".dirty"):

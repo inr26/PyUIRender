@@ -29,11 +29,21 @@ class SuccessDialog(QDialog):
         clipboard.setText(self.ui.saved_file_path.toPlainText())
 
 class FailureDialog(QDialog):
-    """Wrapper for the failure dialog"""
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, error_message="", failed_count=0, total_files=0):
         super().__init__(parent)
         self.ui = Ui_fail_dialog()
         self.ui.setupUi(self)
+        
+        # Set error details
+        if error_message:
+            self.ui.error_details.setPlainText(error_message)
+        
+        # Update subtitle with failure count
+        self.ui.subtitle.setText(
+            f"{failed_count} of {total_files} files failed to convert"
+        )
+        
+        # Connect button
         self.ui.try_again.clicked.connect(self.accept)
 
 class MainWindow(QMainWindow):
@@ -248,7 +258,7 @@ class MainWindow(QMainWindow):
             
         except Exception as e:
             error_msg = f"Error converting {filename}:\n{str(e)}"
-            print(error_msg)
+            print(error_msg)  # Print to console
             self.failed_files.append((filename, str(e)))
         
         # Update progress
@@ -267,8 +277,26 @@ class MainWindow(QMainWindow):
         if not self.failed_files:
             self.show_success_dialog(output_dir, self.successful_files)
         else:
-            error_msg = f"{len(self.failed_files)} out of {len(self.selected_files)} files failed to convert."
-            self.show_failure_dialog("Conversion Failed", error_msg)
+            # Format error messages for display
+            error_msg = "\n\n".join(
+                [f"• {filename}: {error}" 
+                 for filename, error in self.failed_files]
+            )
+            
+            # Print all errors to console
+            print("\nConversion Summary:")
+            print(f"Successful: {len(self.successful_files)} files")
+            print(f"Failed: {len(self.failed_files)} files")
+            for filename, error in self.failed_files:
+                print(f"\nError in {filename}:")
+                print(error)
+            
+            # Show failure dialog with error details
+            self.show_failure_dialog(
+                error_message=error_msg,
+                failed_count=len(self.failed_files),
+                total_files=len(self.selected_files)
+            )
     
     def show_success_dialog(self, output_dir, converted_files):
         """Show the success dialog"""
@@ -276,9 +304,14 @@ class MainWindow(QMainWindow):
         dialog.exec()
         self.ui.progressBar.setValue(0)
     
-    def show_failure_dialog(self, title, message):
-        """Show the failure dialog"""
-        dialog = FailureDialog(self)
+    def show_failure_dialog(self, error_message, failed_count, total_files):
+        """Show the failure dialog with error details"""
+        dialog = FailureDialog(
+            self, 
+            error_message=error_message,
+            failed_count=failed_count,
+            total_files=total_files
+        )
         dialog.exec()
         self.ui.progressBar.setValue(0)
     
