@@ -19,36 +19,44 @@ Modules:
     convert_pyqt6: PyQt6 conversion module
     convert_pyside6: PySide6 conversion module
     resources_rc: Compiled resource file for application assets
-
-Versioning:
-    Uses versioneer for automatic version management
 """
 
 import os
-from . import _version
-from ._version import get_versions
+import subprocess
+import sys
 
-
-__author__ = "Istiak Noor Rabbi"
-__email__ = "istiaknoor26@gmail.com"
+# Package metadata
+__author__ = "Your Name"
+__email__ = "your.email@example.com"
 __description__ = "A tool for converting Qt .ui files to Python code"
 __license__ = "MIT"
 
+# Version management
+__version__ = "1.0.0"  # Default version
 
-__version__ = get_versions()['version']
-del get_versions
+# Try to get version from git if available
+try:
+    # Get git describe output for version
+    result = subprocess.run(
+        ["git", "describe", "--tags", "--dirty", "--always"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=True,
+        cwd=os.path.dirname(__file__)
+    )
+    __version__ = result.stdout.strip()
+except (subprocess.CalledProcessError, FileNotFoundError, OSError):
+    # Fallback to default version
+    pass
 
-
-from . import _version
-__version__ = _version.get_versions()['version']
-
-
+# Import key components for easier access
 from .appWindow import Ui_AppMainWindow
 from .success_dia import Ui_success_dialog
 from .failed_dia import Ui_fail_dialog
 from .resources_rc import *
 
-
+# Package initialization message
 print(f"Initializing PyUIRender v{__version__}")
 
 def get_converters():
@@ -65,15 +73,5 @@ def about():
         f"Description: {__description__}"
     )
 
-# Versioneer configuration
-def get_cmdclass():
-
-    from versioneer import get_cmdclass as _get_cmdclass
-    return _get_cmdclass()
-
-def get_version():
-
-    return __version__
-
-
-del _version
+# Clean up namespace
+del os, subprocess, sys
