@@ -1,2 +1,32 @@
 # Version files
 PyUIRender/_version.py
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+*.egg-info/
+dist/
+build/
+
+# Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Qt
+*.ui.bak
+*.qrc.bak
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output files
+*.spec
+output/

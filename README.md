@@ -4,7 +4,25 @@ PyUIRender - Qt UI to Python Converter
 
 PyUIRender is a user-friendly graphical tool that converts Qt Designer .ui files into Python code for multiple frameworks. With its intuitive interface, you can batch-convert UI files to PyQt5, PyQt6, or PySide6 formats with just a few clicks.
 
-Features
+🚀 Why PyUIRender?
+
+PyUIRender is a powerful, user-friendly desktop application tailored for developers and designers who need to:
+
+- Rapidly **convert** Qt Designer UI (`.ui`) files into **Python** code for  
+  - PyQt5  
+  - PyQt6  
+  - PySide6  
+
+- **Batch-process** dozens of UI files in one session  
+- Track progress with a **visual progress bar**  
+- Remember your preferred output folders for streamlined workflows  
+- Quickly **copy** output paths to clipboard after conversion  
+- Get clear **success** and **error** dialogs  
+
+Whether you’re building internal tools, shipping client-facing GUIs, or automating your build pipeline, PyUIRender saves time and enforces consistency.
+
+⭐ Key Features
+
 🖼️ Multi-Format Conversion: Convert UI files to PyQt5, PyQt6, or PySide6 code
 
 📁 Batch Processing: Convert multiple UI files simultaneously
@@ -19,8 +37,11 @@ Features
 
 ✅ Error Handling: Clear error messages and success notifications
 
-Installation
+
+🎯 Installation
+
 Prerequisites
+
 Python 3.7 or higher
 Avoid using version 3.13 or higher, as PySide6 is not yet supported.
 
@@ -47,6 +68,8 @@ Launch the application:
 
 bash
 python main.py
+
+
 Using the interface:
 
 Click "Browse .ui Files" to select UI files for conversion
@@ -65,27 +88,36 @@ Error dialog provides details for any failed conversions
 
 Progress bar tracks conversion status
 
+
 Screenshots
-Main Window	Success Dialog	Error Dialog
-https://screenshots/main_window.png	https://screenshots/success_dialog.png	https://screenshots/error_dialog.png
+
+Main Window	
+
+Success Dialog	
+
+Error Dialog
+
+
 File Structure
-text
+
 PyUIRender/
-├── icon/                         # Application icons
-│   └── ico.png
-├── screenshots/                  # Application screenshots
-│   ├── main_window.png
-│   ├── success_dialog.png
-│   └── error_dialog.png
-├── convert_pyqt5.py              # PyQt5 conversion module
-├── convert_pyqt6.py              # PyQt6 conversion module
-├── convert_pyside6.py            # PySide6 conversion module
-├── main.py                       # Main application
-├── appWindow.py                  # Main window UI
-├── success_dia.py                # Success dialog UI
-├── failed_dia.py                 # Error dialog UI
-├── resources_rc.py               # Compiled resource file
-└── README.md                     # This documentation
+├── PyUIRender/                   # Main package directory
+│   ├── icon/ico.ico              # Application icon in Windows ICO format
+│   ├── __init__.py               # Package initialization file
+│   ├── appWindow.py              # Main application window UI 
+│   ├── convert_pyqt5.py          # PyQt5 conversion module
+│   ├── convert_pyqt6.py          # PyQt6 conversion module
+│   ├── convert_pyside6.py        # PySide6 conversion module
+│   ├── failed_dia.py             # Error dialog UI 
+│   ├── main.py                   # Main application entry point 
+│   ├── resources_rc.py           # Compiled resource file 
+│   └── success_dia.py            # Success dialog UI 
+├── .gitignore                    # Git ignore file
+├── pyproject.toml                # Python project configuration
+├── README.md                     # Project documentation
+└── setup.py                      # Installation script
+
+
 Requirements
 The core application requires:
 
