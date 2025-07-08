@@ -54,7 +54,9 @@ Avoid using version 3.13 or higher, as PySide6 is not yet supported.
 PySide6
 
 Installation Steps
-Clone the repository.
+Clone the repository:
+
+https://github.com/inr26/PyUIRender.git
 
 
 Install required dependencies:
