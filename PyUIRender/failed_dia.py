@@ -1,7 +1,7 @@
 from PySide6.QtCore import (QCoreApplication, QMetaObject, QRect)
 from PySide6.QtGui import (QFont, QPixmap)
 from PySide6.QtWidgets import (QLabel, QPushButton,)
-import resources_rc
+from PyUIRender import resources_rc
 
 class Ui_fail_dialog(object):
     def setupUi(self, fail_dialog):

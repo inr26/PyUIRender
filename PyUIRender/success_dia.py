@@ -1,7 +1,7 @@
 from PySide6.QtCore import (QCoreApplication, QMetaObject, QRect, QSize)
 from PySide6.QtGui import (QFont, QIcon, QPixmap)
 from PySide6.QtWidgets import (QLabel, QPlainTextEdit, QPushButton)
-import resources_rc
+from PyUIRender import resources_rc
 
 class Ui_success_dialog(object):
     def setupUi(self, success_dialog):

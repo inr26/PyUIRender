@@ -1,13 +1,14 @@
 import sys
 import os
 from PySide6.QtWidgets import (
-    QApplication, QMainWindow, QFileDialog, 
+    QFileDialog, QApplication, QMainWindow, QFileDialog, 
     QLabel, QVBoxLayout, QDialog, QMessageBox)
 from PySide6.QtCore import QTimer, QSettings
 from PySide6.QtGui import QIcon
 from appWindow import Ui_AppMainWindow
 from success_dia import Ui_success_dialog
 from failed_dia import Ui_fail_dialog
+from PyUIRender import resources_rc
 
 class SuccessDialog(QDialog):
     """Wrapper for the success dialog"""

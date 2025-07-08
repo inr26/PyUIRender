@@ -3,7 +3,7 @@ from PySide6.QtGui import (QFont, QIcon, QPixmap)
 from PySide6.QtWidgets import (
     QComboBox, QLabel, QLineEdit, QProgressBar, 
     QPushButton, QScrollArea, QWidget)
-import resources_rc
+from PyUIRender import resources_rc
 
 class Ui_AppMainWindow(object):
     def setupUi(self, MainWindow):
