@@ -1,6 +1,7 @@
 PyUIRender - Qt UI to Python Converter
 
-![Banner](https://github.com/user-attachments/assets/3824219b-61a9-438e-af33-1dd02fe7e682)
+![Banner_s](https://github.com/user-attachments/assets/99f7d9c6-696d-44ee-8c05-e201b9819de3)
+
 
 
 
@@ -105,22 +106,7 @@ Error Dialog
 
 File Structure
 
-PyUIRender/
-├── PyUIRender/                   # Main package directory
-│   ├── icon/ico.ico              # Application icon in Windows ICO format
-│   ├── __init__.py               # Package initialization file
-│   ├── appWindow.py              # Main application window UI 
-│   ├── convert_pyqt5.py          # PyQt5 conversion module
-│   ├── convert_pyqt6.py          # PyQt6 conversion module
-│   ├── convert_pyside6.py        # PySide6 conversion module
-│   ├── failed_dia.py             # Error dialog UI 
-│   ├── main.py                   # Main application entry point 
-│   ├── resources_rc.py           # Compiled resource file 
-│   └── success_dia.py            # Success dialog UI 
-├── .gitignore                    # Git ignore file
-├── pyproject.toml                # Python project configuration
-├── README.md                     # Project documentation
-└── setup.py                      # Installation script
+![image](https://github.com/user-attachments/assets/65b126a4-2f70-441b-b192-f136a628144f)
 
 
 Requirements
