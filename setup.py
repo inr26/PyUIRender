@@ -2,9 +2,12 @@
 import versioneer
 from setuptools import setup, find_packages
 
+# Get version using versioneer
+version = versioneer.get_version()
+
 setup(
     name="PyUIRender",
-    version=versioneer.get_version(),
+    version=version,
     cmdclass=versioneer.get_cmdclass(),
     description="Qt UI file conversion tool",
     author="Your Name",

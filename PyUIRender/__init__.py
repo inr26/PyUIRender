@@ -34,21 +34,18 @@ __license__ = "MIT"
 # Version management
 __version__ = "1.0.0"  # Default version
 
-# Try to get version from git if available
 try:
-    # Get git describe output for version
-    result = subprocess.run(
-        ["git", "describe", "--tags", "--dirty", "--always"],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        check=True,
-        cwd=os.path.dirname(__file__)
-    )
-    __version__ = result.stdout.strip()
-except (subprocess.CalledProcessError, FileNotFoundError, OSError):
-    # Fallback to default version
-    pass
+    # Try to get version from versioneer-generated file
+    from ._version import get_versions
+    __version__ = get_versions()['version']
+    del get_versions
+except ImportError:
+    # Fallback for development mode
+    try:
+        from setuptools_scm import get_version
+        __version__ = get_version()
+    except ImportError:
+        __version__ = "0.0.0.dev"
 
 # Import key components for easier access
 from .appWindow import Ui_AppMainWindow
@@ -72,6 +69,3 @@ def about():
         f"License: {__license__}\n"
         f"Description: {__description__}"
     )
-
-# Clean up namespace
-del os, subprocess, sys
