@@ -3,6 +3,7 @@ from PySide6.QtGui import (QFont, QPixmap)
 from PySide6.QtWidgets import (QLabel, QPushButton, QPlainTextEdit)
 from PyUIRender import resources_rc
 
+# New error handling
 class Ui_fail_dialog(object):
     def setupUi(self, fail_dialog):
         if not fail_dialog.objectName():
