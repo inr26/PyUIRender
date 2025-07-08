@@ -23,7 +23,7 @@ Modules:
 
 # Package metadata
 __author__ = "istiak Noor Rabbi"
-__email__ = "istiaknoor@gmail.com"
+__email__ = "istiaknoor26@gmail.com"
 __description__ = "A tool for converting Qt .ui files to Python code"
 __license__ = "MIT"
 
@@ -33,12 +33,27 @@ from .success_dia import Ui_success_dialog
 from .failed_dia import Ui_fail_dialog
 from .resources_rc import *
 
-# Get version from git
+# Dynamic version import - FIXED
 try:
-    from .get_version import get_version
-    __version__ = get_version()
+    # First try: installed package version
+    from importlib.metadata import version
+    __version__ = version("PyUIRender")
 except ImportError:
-    __version__ = "0.0.0.dev"
+    # importlib.metadata not available (Python < 3.8)
+    try:
+        from setuptools_scm import get_version
+        # Get version from source control
+        __version__ = get_version(root='..', relative_to=__file__)
+    except (ImportError, LookupError):
+        # Final fallback
+        __version__ = "1.0.0.dev"
+except Exception:
+    # Handle PackageNotFoundError and other exceptions
+    try:
+        from setuptools_scm import get_version
+        __version__ = get_version(root='..', relative_to=__file__)
+    except (ImportError, LookupError):
+        __version__ = "1.0.0.dev"
 
 # Package initialization message
 print(f"Initializing PyUIRender v{__version__}")
